@@ -1,0 +1,28 @@
+<h1>{{title}}</h1>
+<table class="border-collapse border border-slate-400" [hidden]="hideTable">
+    <thead>
+      <tr lass="border border-slate-300">
+          <th class="border border-slate-300">Even/Odd</th>
+          <th class="border border-slate-300">Room Type</th>
+          <th class="border border-slate-300">amenities</th>
+          <th class="border border-slate-300">Price</th>
+          <th class="border border-slate-300">Check In</th>
+          <th class="border border-slate-300">Check Out</th>
+          <th class="border border-slate-300">Select Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [ngClass]=" e ?'even':'odd' " *ngFor="let room of rooms; let e=even; let o=odd; ">
+          <td class="border border-slate-300">{{e?"Even":"Odd"}}</td>
+          <td class="border border-slate-300">{{room.roomType}}</td>
+          <td class="border border-slate-300">{{room.amenities | titlecase}}</td>
+          <td class="border border-slate-300">{{room.price|currency:'EUR'}}</td>
+          <td class="border border-slate-300">{{room.checkinTime | date:'dd/MM/yyyy'}}</td>
+          <td class="border border-slate-300">{{room.checkoutTime | date:'dd/MM/yyyy'}}</td>
+          <td class="border border-slate-300">
+              <button type="button" (click)="roomSelected(room)" class="bg-green-500 hover:bg-green-700 text-black px-2 py-2 mx-2 my-2 rounded">Book</button>
+          </td>
+      </tr>
+    </tbody>
+</table>
+<button type="button" (click)="toggle()">Click Me</button>
